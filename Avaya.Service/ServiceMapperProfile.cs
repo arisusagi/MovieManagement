@@ -5,11 +5,10 @@ using Avaya.Model.Menu;
 using Avaya.Model.Movie;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-using Avaya.Model.ShowSeat;
 using Avaya.Model.MovieNews;
 using Avaya.Model.FilmOnline;
 using Avaya.Core.Helper;
-using Avaya.Model.SaveSeat;
+using Avaya.Model.Seat;
 using Avaya.Model.Service;
 using Avaya.Model.Payment;
 
@@ -19,6 +18,8 @@ namespace Avaya.Service
     {
         public ServiceMapperProfile()
         {
+            CreateMap<NewsArticles, NewsModel>().ReverseMap();
+            CreateMap<NewsArticles, NewsDetailModel>().ReverseMap();
             CreateMap<Movie, MovieTemptModel>().ReverseMap();
             CreateMap<Movie, MovieModel>().ReverseMap();
             CreateMap<Cinema, MovieModel>()
@@ -47,12 +48,16 @@ namespace Avaya.Service
 
             #region Film Online Mapping
             CreateMap<FilmOnline, FilmCarouselModel>();
-            
             CreateMap<FilmOnline, FilmNominationModel>()
                 .ForMember(x => x.Time, opt => opt.MapFrom(i => i.Duration)).ReverseMap();
             CreateMap<FilmOnline, FilmDetailModel>()
                 .ForMember(x => x.Time, opt => opt.MapFrom(i => $"{TransformHelper.TimeIntToString(i.Duration.Value)}"))
                 .ReverseMap();
+            #endregion
+
+            #region Film Offline Mapping
+            CreateMap<Movie, SearchBoxMovieModel>().ReverseMap();
+            CreateMap<Cinema, SearchBoxCinemaModel>().ReverseMap();
             #endregion
         }
     }
