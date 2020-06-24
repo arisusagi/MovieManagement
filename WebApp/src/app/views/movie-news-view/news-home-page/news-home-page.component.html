@@ -1,0 +1,14 @@
+<div class='article-home-news'>
+  <div>
+    <div *ngIf="show" class='main-section'>
+      <div class='article-title'>
+        LATEST NEWS
+      </div>
+      <div *ngFor="let item of listClip">
+        <div class='news-item'>
+          <app-item-showing [data]="item" [type]="type" (click)="onClickLogicChange(item.id)"></app-item-showing>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

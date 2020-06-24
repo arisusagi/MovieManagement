@@ -1,0 +1,27 @@
+.logo{
+  margin-left: 550px;
+  height: 53px;
+  cursor: pointer;
+}
+
+.log-in-circle {
+  display: inline-block;
+  border-radius: 60px;
+  box-shadow: 0px 0px 2px #888;
+  padding: 0.5em 0.6em;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+.header-container{
+  display: flex;
+  flex-direction: row;
+  height: 53px;
+  width: 100%;
+  background-color: white;
+}
+
+.search-container{
+  margin-left: 590px;
+  margin-top: 10px;
+}
