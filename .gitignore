@@ -15,7 +15,6 @@
 /Avaya.Client/obj/Avaya.Client.csproj.nuget.dgspec.json
 /Avaya.Console/obj/Release/netcoreapp2.1
 /Avaya.Core/obj/Release/netcoreapp2.0
-*.json
 /Avaya.Domain/obj/Release/netcoreapp2.0
 /Avaya.Model/obj/Release/netcoreapp2.0
 /Avaya.Service/obj/Release/netcoreapp2.0
