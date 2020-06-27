@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
-namespace Avaya.Domain.Models
+namespace Avaya.Model.FilmOnline
 {
-    public partial class FilmOnline
+    class FilmOnline
     {
         public int Id { get; set; }
         public string Title { get; set; }

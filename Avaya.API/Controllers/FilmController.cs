@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http.Cors;
+using Avaya.Domain.Models;
 using Avaya.Service.Film;
 using Microsoft.AspNetCore.Mvc;
 
@@ -52,6 +53,34 @@ namespace Avaya.API.Controllers
         {
             var listNominationFilms = _filmService.GetListFilmDetails(filmId, numberOfFilms);
             return Ok(listNominationFilms);
+        }
+
+        [HttpGet]
+        public IActionResult GetAllListFilm()
+        {
+            var listFilm = _filmService.GetAllListFilm();
+            return Ok(listFilm);
+        }
+
+        [HttpPost]
+        public IActionResult UpdateFilmOnline([FromBody] FilmOnline data)
+        {
+            var filmOnline = _filmService.UpdateFilmOnline(data);
+            return Ok(filmOnline);
+        }
+
+        [HttpPost]
+        public IActionResult AddFilmOnline([FromBody] FilmOnline data)
+        {
+            var filmOnline = _filmService.AddFilmOnline(data);
+            return Ok(filmOnline);
+        }
+
+        [HttpDelete("{idDelete}")]
+        public IActionResult DeleteFilmOnline(int idDelete)
+        {
+            var filmOnline = _filmService.DeleteFilmOnline(idDelete);
+            return Ok(filmOnline);
         }
     }
 }

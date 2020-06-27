@@ -1,0 +1,73 @@
+<div class="container">
+  <form>
+  <div class="row">
+    <div class="col-25">
+      <label>Title</label>
+    </div>
+    <div class="col-75">
+      <input type="text"placeholder="Title.." [(ngModel)]="title" name="title">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label>Img URL</label>
+    </div>
+    <div class="col-75">
+      <input type="text"placeholder="Img URL.." [(ngModel)]="imgURL" name="imgURL">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label>Duration</label>
+    </div>
+    <div class="col-75">
+      <input type="text"placeholder="Duration.." [(ngModel)]="duration" name="duration">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label>Type</label>
+    </div>
+    <div class="col-75">
+      <input type="text"placeholder="Type.." [(ngModel)]="type" name="type">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label>Release</label>
+    </div>
+    <div class="col-75">
+      <input type="text"placeholder="Release.." [(ngModel)]="releaseDate" name="releaseDate">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label>Movie URL</label>
+    </div>
+    <div class="col-75">
+      <input type="text"placeholder="Movie URL.." [(ngModel)]="movieURL" name="movieURL">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label>Category</label>
+    </div>
+    <div class="col-75">
+      <input type="text"placeholder="Movie URL.." [(ngModel)]="category" name="category">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label>Description</label>
+    </div>
+    <div>
+      <textarea placeholder="Write something.." style="height:200px" [(ngModel)]="description" name="description"></textarea>
+    </div>
+  </div>
+  
+  <div class="row">
+    <button type="submit" class="btn button-log-in" (click)="onClickAdd()">Add</button>
+    <button class="btn btn-danger button-cancel" (click)="onClickCancel()">Cancel</button>
+  </div>
+  </form>
+</div>

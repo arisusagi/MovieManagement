@@ -27,6 +27,7 @@ import { ControlModule } from './controls/control.module';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ServiceModule } from './core/services/service.module';
 import { AppCommonModule } from './common/app-common.module';
+import { MovieManagementComponent } from './views/movie-management/movie-management.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -41,6 +42,7 @@ export const environment = {
   declarations: [
     AppComponent,
     MainViewComponent,
+    MovieManagementComponent,
   ],
   imports: [
     ModalsModule,

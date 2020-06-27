@@ -1,6 +1,8 @@
 ﻿using Avaya.Core.Extension;
 using Avaya.Core.Repositories;
+using Avaya.Core.UoW;
 using Avaya.Domain.Models;
+using Avaya.Domain.UoW;
 using Avaya.Model.FilmOnline;
 using System;
 using System.Collections.Generic;
@@ -12,39 +14,26 @@ namespace Avaya.Service.Film
     public class FilmService : IFilmService
     {
         private readonly IRepository<FilmOnline> _filmOnlineRepository;
-        private readonly IRepository<FilmCategory> _filmCategoryRepository;
-        private readonly IRepository<CategoriesOfFilm> _categoryOfFilmRepository;
-
+        private readonly IUnitOfWork _unitOfWork;
         public FilmService(IRepository<FilmOnline> filmOnlineRepository,
-            IRepository<FilmCategory> filmCategoryRepository,
-            IRepository<CategoriesOfFilm> categoryOfFilmRepository)
+            IUnitOfWork unitOfWork)
         {
             _filmOnlineRepository = filmOnlineRepository;
-            _filmCategoryRepository = filmCategoryRepository;
-            _categoryOfFilmRepository = categoryOfFilmRepository;
+            _unitOfWork = unitOfWork;
+        }
+
+        public List<FilmOnline> GetAllListFilm()
+        {
+            var listFilm = _filmOnlineRepository.GetAll().ToList();
+            return listFilm;
         }
 
         public List<FilmCarouselModel> GetListFilmsCarousel()
         {
-            int i = 0;
             var listFilmsEntity = _filmOnlineRepository.GetAll();
             var listFilms = listFilmsEntity.MapTo<List<FilmCarouselModel>>();
 
             var listFilmIds = listFilmsEntity.Select(x => x.Id);
-
-            var listCategoryOfFilmEntity = _categoryOfFilmRepository.GetAll()
-                .Where(x => listFilmIds.Any(t => t == x.FilmOnlineId));
-
-            var listCategoriesEntity = _filmCategoryRepository.GetAll()
-                .Where(x => listCategoryOfFilmEntity.Any(t => t.FilmCategoryId == x.Id));
-
-            foreach (var item in listFilms)
-            {
-                item.Index = i++;
-                var categoryOfFilm = listCategoryOfFilmEntity.Where(x => x.FilmOnlineId == item.Id);
-                var categories = listCategoriesEntity.Where(x => categoryOfFilm.Any(t => t.FilmCategoryId == x.Id));
-                item.Category = string.Join(", ", categories.Select(x => x.Name));
-            }
             return listFilms;
         }
 
@@ -95,13 +84,10 @@ namespace Avaya.Service.Film
             var filmDetail = new FilmDetailModel();
 
             var filmDetailEntity = _filmOnlineRepository.FirstOrDefault(x => x.Id == filmId);
-            var listCategoryIdEntities = _categoryOfFilmRepository.GetAll()
-                .Where(x => x.FilmOnlineId == filmId);
-            var listCategoryNameEntities = _filmCategoryRepository.GetAll()
-                .Where(x => listCategoryIdEntities.Any(i => i.FilmCategoryId == x.Id)).Select(x => x.Name).ToArray();
+
 
             filmDetail = filmDetailEntity.MapTo<FilmDetailModel>();
-            filmDetail.Categories = string.Join(", ", listCategoryNameEntities);
+
             filmDetail.Date = filmDetailEntity.ReleaseDate.Value.ToString("dd MMMM yyyy");
 
             return filmDetail;
@@ -112,28 +98,93 @@ namespace Avaya.Service.Film
             var listFilmDetails = new List<FilmDetailModel>();
             var listFilmDetailEntities = _filmOnlineRepository.GetAll()
                 .Where(x => x.Id != filmId).Take(numberOfFilms).ToList();
-            var listCategoryOfFilms = _categoryOfFilmRepository.GetAll()
-                .Where(x => listFilmDetailEntities.Any(i => i.Id == x.FilmOnlineId));
-            var listCategoryEntities = _filmCategoryRepository.GetAll()
-                .Where(x => listCategoryOfFilms.Any(i => i.FilmCategoryId == x.Id)).ToList();
+
 
             foreach (var item in listFilmDetailEntities)
             {
                 var filmDetail = new FilmDetailModel();
                 filmDetail = item.MapTo<FilmDetailModel>();
 
-                var categoryNames = listCategoryEntities
-                    .Where(x => listCategoryOfFilms
-                    .Any(i => i.FilmOnlineId == item.Id))
-                    .Select(x => x.Name);
 
-                filmDetail.Categories = string.Join(", ", categoryNames);
+
+
                 filmDetail.Date = item.ReleaseDate.Value.ToString("dd MMMM yyyy");
 
                 listFilmDetails.Add(filmDetail);
             }
 
             return listFilmDetails;
+        }
+
+        public bool UpdateFilmOnline(FilmOnline data)
+        {
+            if (data == null)
+            {
+                return false;
+            }
+            var filmOnlineEntity = new FilmOnline();
+
+            filmOnlineEntity = _filmOnlineRepository.GetAll()
+                   .FirstOrDefault(x => x.Id == data.Id);
+            if (filmOnlineEntity != null)
+            {
+                filmOnlineEntity.Id = data.Id;
+                filmOnlineEntity.ImgUrl = data.ImgUrl;
+                filmOnlineEntity.MovieUrl = data.MovieUrl;
+                filmOnlineEntity.Title = data.Title;
+                filmOnlineEntity.ReleaseDate = data.ReleaseDate;
+                filmOnlineEntity.Type = data.Type;
+                filmOnlineEntity.Category = data.Category;
+                filmOnlineEntity.Duration = data.Duration;
+                filmOnlineEntity.Description = filmOnlineEntity.Description;
+                _filmOnlineRepository.Update(filmOnlineEntity);
+            }
+            else
+            {
+                filmOnlineEntity = data.MapTo<FilmOnline>();
+                _filmOnlineRepository.Insert(filmOnlineEntity);
+            }
+
+            var isSaveChangesSuccessed = _unitOfWork.SaveChanges();
+            if (!isSaveChangesSuccessed)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public bool AddFilmOnline(FilmOnline data)
+        {
+            if (data == null)
+            {
+                return false;
+            }
+            else
+            {
+                var filmOnlineEntity = data.MapTo<FilmOnline>();
+                _filmOnlineRepository.Insert(filmOnlineEntity);
+            }
+
+            var isSaveChangesSuccessed = _unitOfWork.SaveChanges();
+            if (!isSaveChangesSuccessed)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public bool DeleteFilmOnline(int idDelete)
+        {
+            var filmOnline = _filmOnlineRepository.GetAll()
+                .FirstOrDefault(x => x.Id == idDelete);
+            _filmOnlineRepository.Delete(filmOnline,true);
+
+            var isSaveChangesSuccessed = _unitOfWork.SaveChanges();
+            if (!isSaveChangesSuccessed)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

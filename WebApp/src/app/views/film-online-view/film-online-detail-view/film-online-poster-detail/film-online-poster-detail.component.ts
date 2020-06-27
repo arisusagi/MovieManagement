@@ -18,7 +18,7 @@ export class FilmOnlinePosterDetailComponent implements OnInit {
     private filmOnlineService: FilmOnlineService) { }
 
   ngOnInit() {
-    this.filmOnlineService.getFilmDetail(19).subscribe(result => {
+    this.filmOnlineService.getFilmDetail(this.filmId).subscribe(result => {
       if (result) {
         this.data = result;
         this.data.rates = [50, 33, 79];

@@ -14,24 +14,6 @@ export class FilmOnlineDetailViewComponent implements OnInit {
   listFilmDetails: any;
   currentFilmId: number;
 
-  dropdownItemsTrendingArray = [
-    { id: 1, text: "Newest Date" },
-    { id: 2, text: "Oldest Date" },
-    { id: 3, text: "Newest Date" },
-    { id: 4, text: "Oldest Date" },
-    { id: 5, text: "Newest Date" },
-    { id: 6, text: "Oldest Date" },
-  ]
-
-  dropdownItemsSortingArray = [
-    { id: 1, text: "Newest Date" },
-    { id: 2, text: "Oldest Date" },
-    { id: 3, text: "Newest Date" },
-    { id: 4, text: "Oldest Date" },
-    { id: 5, text: "Newest Date" },
-    { id: 6, text: "Oldest Date" },
-  ]
-
   constructor(private activatedRoute: ActivatedRoute,
     private filmOnlineService: FilmOnlineService) { }
 

@@ -4,6 +4,7 @@ import { MenuService } from 'src/app/core/services/menu.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { LoginModalComponent } from 'src/app/modals/login/login.modal.component';
 import { ForgottenModalComponent } from 'src/app/modals/forgotten/forgotten.modal.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -19,7 +20,8 @@ export class HeaderComponent implements OnInit {
   password: string;
 
   constructor(private menuService: MenuService,
-    private modalService: BsModalService) { }
+    private modalService: BsModalService,
+    private router:Router) { }
 
   ngOnInit() {
     this.menuService.GetAll().subscribe(result => {
@@ -45,5 +47,17 @@ export class HeaderComponent implements OnInit {
         });
       }
     })
+  }
+
+  onClickPhimOnline(){
+    this.router.navigateByUrl("/film-online");
+  }
+
+  onClickOrder(){
+    this.router.navigateByUrl("/offline");
+  }
+
+  onClickAdmin(){
+    this.router.navigateByUrl("/admin");
   }
 }

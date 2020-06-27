@@ -12,10 +12,10 @@ import { FormsModule } from '@angular/forms';
 import { ForgottenModalComponent } from '../modals/forgotten/forgotten.modal.component';
 import { ModalsModule } from '../modals/modals.module';
 import { ViewRoutingModule } from './view-routing.module';
+import { MovieManagementComponent } from './movie-management/movie-management.component';
 
 @NgModule({
-  declarations: [
-  ],
+  declarations: [],
   imports: [
     ControlModule,
     MovieNewsViewModule,
@@ -24,7 +24,8 @@ import { ViewRoutingModule } from './view-routing.module';
     FilmOnlineViewModule,
     FormsModule,
     ViewRoutingModule,
-    CommonModule
+    CommonModule,
+    MovieManagementComponent
   ],
   entryComponents: [
   ],
@@ -35,7 +36,8 @@ import { ViewRoutingModule } from './view-routing.module';
     FilmOnlineViewModule,
     ModalsModule,
     PaymentViewModule,
-    FilmOnlineViewModule
+    FilmOnlineViewModule,
+    MovieManagementComponent
   ]
 })
 export class ViewModule { }

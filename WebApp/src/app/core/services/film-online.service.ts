@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { FilmPosterDetailModel } from '../model/film-model/film-poster-detail.model';
+import { FilmOnlineDetail } from '../model/film-model/film-online-detail.model';
 
 @Injectable()
 export class FilmOnlineService {
@@ -33,5 +34,21 @@ export class FilmOnlineService {
     let queryParams = new HttpParams().set('filmId', filmId)
                                       .set("numberOfFilms", numberOfFilms);
     return this.httpClient.get(`${this.apiHost}/${this.homeAddress}/GetListFilmDetails`, { params: queryParams });
+  }
+
+  getAllListFilm():Observable<any>{
+    return this.httpClient.get(`${this.apiHost}/${this.homeAddress}/GetAllListFilm`);
+  }
+
+  updateFilmOnline(data:FilmOnlineDetail):Observable<any>{
+    return this.httpClient.post(`${this.apiHost}/${this.homeAddress}/UpdateFilmOnline`,data)
+  }
+
+  addFilmOnline(data:FilmOnlineDetail):Observable<any>{
+    return this.httpClient.post(`${this.apiHost}/${this.homeAddress}/AddFilmOnline`,data)
+  }
+
+  deleteFilmOnline(idDelete:number):Observable<any>{
+    return this.httpClient.delete(`${this.apiHost}/${this.homeAddress}/DeleteFilmOnline/${idDelete}`)
   }
 }

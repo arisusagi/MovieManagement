@@ -1,6 +1,7 @@
 import { Routes, RouterModule } from "@angular/router";
 import { MainViewComponent } from "./views/main-view/main-view.component";
 import { NgModule } from "@angular/core";
+import { MovieManagementComponent } from "./views/movie-management/movie-management.component";
 
 const appRoutes: Routes = [
     {
@@ -22,9 +23,14 @@ const appRoutes: Routes = [
             {
                 path: 'offline',
                 loadChildren: './views/offline-movie-search-view/offline-movie-search-view.module#OfflineMovieSearchViewModule',
-            }
+            },
+
         ]
     },
+    {
+        path: 'admin',
+        component: MovieManagementComponent,
+    }
 ];
 
 @NgModule({

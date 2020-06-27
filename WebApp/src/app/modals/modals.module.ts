@@ -6,11 +6,17 @@ import { CommonComponentModule } from '../common/components/common-component.mod
 import { AppCommonModule } from '../common/app-common.module';
 import { LoginModalComponent } from './login/login.modal.component';
 import { ForgottenModalComponent } from './forgotten/forgotten.modal.component';
+import { EditComponent } from './edit/edit.component';
+import { AddComponent } from './add/add.component';
+import { DeleteComponent } from './delete/delete.component';
 
 @NgModule({
     declarations: [
         LoginModalComponent,
-        ForgottenModalComponent
+        ForgottenModalComponent,
+        EditComponent,
+        AddComponent,
+        DeleteComponent,
     ],
     imports: [
         FormsModule,
@@ -21,11 +27,16 @@ import { ForgottenModalComponent } from './forgotten/forgotten.modal.component';
     ],
     entryComponents: [
         LoginModalComponent,
-        ForgottenModalComponent
+        ForgottenModalComponent,
+        EditComponent,
+        AddComponent,
+        DeleteComponent,
     ],
     exports: [
         LoginModalComponent,
-        ForgottenModalComponent
+        ForgottenModalComponent,
+        EditComponent,
+        AddComponent,
     ]
 })
 export class ModalsModule { }

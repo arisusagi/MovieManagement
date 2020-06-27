@@ -19,9 +19,7 @@ namespace Avaya.Domain.Models
         public virtual DbSet<BillDetail> BillDetail { get; set; }
         public virtual DbSet<Booking> Booking { get; set; }
         public virtual DbSet<BookingDetail> BookingDetail { get; set; }
-        public virtual DbSet<CategoriesOfFilm> CategoriesOfFilm { get; set; }
         public virtual DbSet<Cinema> Cinema { get; set; }
-        public virtual DbSet<FilmCategory> FilmCategory { get; set; }
         public virtual DbSet<FilmOnline> FilmOnline { get; set; }
         public virtual DbSet<Menu> Menu { get; set; }
         public virtual DbSet<Movie> Movie { get; set; }

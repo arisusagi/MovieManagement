@@ -1,6 +1,6 @@
-<div class="body-info">
+<div class="body-info" (click)="onClickCarousel()">
   <div class="image-container">
-    <img class="image" [src]="_domSanitizer.bypassSecurityTrustUrl(item.imgUrl)">
+    <img class="image" [src]="_domSanitizer.bypassSecurityTrustUrl(item.imgUrl)" >
     <div class="middle">
         <i class="icon-play far fa-play-circle fa-5x"></i>
     </div>
