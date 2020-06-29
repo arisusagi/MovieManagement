@@ -1,0 +1,34 @@
+<div class="container">
+  <form>
+  <div class="row">
+    <div class="col-25">
+      <label>User Name</label>
+    </div>
+    <div class="col-75">
+      <input type="text"placeholder="User Name ..." [(ngModel)]="userName" name="usernName">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label>Password</label>
+    </div>
+    <div class="col-75">
+      <input type="text"placeholder="Password.." [(ngModel)]="password" name="password">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label>Type</label>
+    </div>
+    <div class="col-75">
+      <input type="text"placeholder="Type(1 or 2).." [(ngModel)]="type" name="type">
+    </div>
+  </div>
+  
+  
+  <div class="row">
+    <button type="submit" class="btn button-log-in" (click)="onClickAdd()">Add</button>
+    <button class="btn btn-danger button-cancel" (click)="onClickCancel()">Cancel</button>
+  </div>
+  </form>
+</div>

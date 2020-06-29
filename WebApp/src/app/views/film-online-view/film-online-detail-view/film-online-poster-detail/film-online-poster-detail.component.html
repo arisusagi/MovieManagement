@@ -1,10 +1,8 @@
-<!-- <div *ngIf="data" class="body-container"> -->
+
 <div class="body-container">
   <div class="body-detail">
-    <video width="320" height="240" autoplay>
-      <source src="movie.mp4" type="video/mp4">
-      <source src="movie.ogg" type="video/ogg">
-      Your browser does not support the video tag.
-    </video>
+    <iframe width="950" height="440"
+    [src]="_domSanitizer.bypassSecurityTrustResourceUrl(data.movieUrl)">
+    </iframe>
   </div>
 </div>

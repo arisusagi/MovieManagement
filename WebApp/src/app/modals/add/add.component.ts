@@ -47,7 +47,7 @@ export class AddComponent implements OnInit {
     console.log(this.filmOnline);
     this.filmOnlineService.addFilmOnline(this.filmOnline).subscribe(result => {
       alert(result);
-      this.router.navigateByUrl("/admin");
+      location.reload();
       this.closeModal();
     })
   }

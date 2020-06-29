@@ -6,6 +6,7 @@ namespace Avaya.Model.FilmOnline
 {
     public class FilmCarouselModel: BaseModel
     {
+        public string Id { get; set; }
         public string Title { get; set; }
 
         public string ImgUrl { get; set; }

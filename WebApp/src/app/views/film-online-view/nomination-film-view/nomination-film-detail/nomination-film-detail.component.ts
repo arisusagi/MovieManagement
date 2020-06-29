@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-nomination-film-detail',
@@ -12,12 +13,13 @@ export class NominationFilmDetailComponent implements OnInit {
   @Input() data: any;
 
   constructor(private _domSanitizer: DomSanitizer,
-    private router: Router) { }
+    private router: Router,) { }
 
   ngOnInit() {
   }
 
   onClickFilmDetail() {
-    this.router.navigateByUrl(`film-online/film-detail/${this.data.id}`)
+    this.router.navigateByUrl(`film-online/film-detail/${this.data.id}`);
   }
+
 }

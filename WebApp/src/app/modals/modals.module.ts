@@ -9,6 +9,9 @@ import { ForgottenModalComponent } from './forgotten/forgotten.modal.component';
 import { EditComponent } from './edit/edit.component';
 import { AddComponent } from './add/add.component';
 import { DeleteComponent } from './delete/delete.component';
+import { AddAccountComponent } from './add-account/add-account.component';
+import { EditAccountComponent } from './edit-account/edit-account.component';
+import { DeleteAccountComponent } from './delete-account/delete-account.component';
 
 @NgModule({
     declarations: [
@@ -17,6 +20,9 @@ import { DeleteComponent } from './delete/delete.component';
         EditComponent,
         AddComponent,
         DeleteComponent,
+        AddAccountComponent,
+        EditAccountComponent,
+        DeleteAccountComponent,
     ],
     imports: [
         FormsModule,
@@ -31,12 +37,19 @@ import { DeleteComponent } from './delete/delete.component';
         EditComponent,
         AddComponent,
         DeleteComponent,
+        AddAccountComponent,
+        EditAccountComponent,
+        DeleteAccountComponent,
     ],
     exports: [
         LoginModalComponent,
         ForgottenModalComponent,
         EditComponent,
         AddComponent,
+        DeleteComponent,
+        AddAccountComponent,
+        EditAccountComponent,
+        DeleteAccountComponent,
     ]
 })
 export class ModalsModule { }

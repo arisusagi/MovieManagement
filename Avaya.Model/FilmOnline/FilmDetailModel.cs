@@ -6,18 +6,14 @@ namespace Avaya.Model.FilmOnline
 {
     public class FilmDetailModel : BaseModel
     {
+        public int Id { get; set; }
         public string Title { get; set; }
-
         public string ImgUrl { get; set; }
-
-        public string Description { get; set; }
-
-        public string Time { get; set; }
-
-        public string Categories { get; set; }
-
+        public int? Duration { get; set; }
         public string Type { get; set; }
-
-        public string Date { get; set; }
+        public string ReleaseDate { get; set; }
+        public string Description { get; set; }
+        public string MovieUrl { get; set; }
+        public string Category { get; set; }
     }
 }

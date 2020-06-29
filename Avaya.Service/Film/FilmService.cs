@@ -22,10 +22,24 @@ namespace Avaya.Service.Film
             _unitOfWork = unitOfWork;
         }
 
-        public List<FilmOnline> GetAllListFilm()
+        public List<FilmDetailModel> GetAllListFilm()
         {
+
+            var listFilmDetails = new List<FilmDetailModel>();
             var listFilm = _filmOnlineRepository.GetAll().ToList();
-            return listFilm;
+            foreach (var item in listFilm)
+            {
+                var filmDetail = new FilmDetailModel();
+                filmDetail = item.MapTo<FilmDetailModel>();
+
+
+
+
+                filmDetail.ReleaseDate = item.ReleaseDate.Value.ToString("dd MMMM yyyy");
+
+                listFilmDetails.Add(filmDetail);
+            }
+            return listFilmDetails;
         }
 
         public List<FilmCarouselModel> GetListFilmsCarousel()
@@ -79,16 +93,14 @@ namespace Avaya.Service.Film
             return filmNomination;
         }
 
-        public FilmDetailModel GetFilmDetail(int filmId)
+        public FilmOnline GetFilmDetail(int filmId)
         {
-            var filmDetail = new FilmDetailModel();
+            var filmDetail = new FilmOnline();
 
             var filmDetailEntity = _filmOnlineRepository.FirstOrDefault(x => x.Id == filmId);
 
+            filmDetail = filmDetailEntity.MapTo<FilmOnline>();
 
-            filmDetail = filmDetailEntity.MapTo<FilmDetailModel>();
-
-            filmDetail.Date = filmDetailEntity.ReleaseDate.Value.ToString("dd MMMM yyyy");
 
             return filmDetail;
         }
@@ -108,7 +120,7 @@ namespace Avaya.Service.Film
 
 
 
-                filmDetail.Date = item.ReleaseDate.Value.ToString("dd MMMM yyyy");
+                filmDetail.ReleaseDate = item.ReleaseDate.Value.ToString("dd MMMM yyyy");
 
                 listFilmDetails.Add(filmDetail);
             }

@@ -9,7 +9,7 @@ import { FilmOnlineService } from 'src/app/core/services/film-online.service';
 })
 export class FilmOnlineDetailViewComponent implements OnInit {
 
-  filmId: number;
+  filmId: any;
   data: any;
   listFilmDetails: any;
   currentFilmId: number;
@@ -17,10 +17,12 @@ export class FilmOnlineDetailViewComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute,
     private filmOnlineService: FilmOnlineService) { }
 
+    
   ngOnInit() {
+    
     this.activatedRoute.params.subscribe(x => {
       if (x) {
-        this.filmId = parseInt(x.toString());
+        this.filmId = parseInt(x.id.toString());
         this.getFilmDetail(this.filmId);
       }
     });
@@ -30,16 +32,19 @@ export class FilmOnlineDetailViewComponent implements OnInit {
     this.filmOnlineService.getListFilmDetails(filmId, 3).subscribe(result => {
       if (result) {
         this.listFilmDetails = result;
-        this.currentFilmId = this.listFilmDetails[0].id;
+        // this.currentFilmId = this.listFilmDetails[0].id;
+        
       }
     });
   }
 
   onChangeViewDetail(event: number) {
     this.currentFilmId = event;
+    
   }
 
   changeStatus(filmId: number) {
     return filmId == this.currentFilmId;
+    
   }
 }

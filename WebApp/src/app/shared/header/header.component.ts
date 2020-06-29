@@ -18,12 +18,26 @@ export class HeaderComponent implements OnInit {
   modalRef: BsModalRef;
   username: string;
   password: string;
+  checkType: boolean;
+  currentType: string;
+  checkStaff:boolean;
+  type:any;
 
   constructor(private menuService: MenuService,
     private modalService: BsModalService,
     private router:Router) { }
 
   ngOnInit() {
+    var currentType= sessionStorage.getItem('type')
+    console.log(currentType);
+    if(parseInt(currentType)==1)
+    {
+      this.checkType = true;
+    }
+    if(parseInt(currentType)==2)
+    {
+      this.checkStaff=true;
+    }
     this.menuService.GetAll().subscribe(result => {
       this.listMenus = result;
     });
@@ -59,5 +73,9 @@ export class HeaderComponent implements OnInit {
 
   onClickAdmin(){
     this.router.navigateByUrl("/admin");
+  }
+
+  onClickAccount(){
+    this.router.navigateByUrl("/account");
   }
 }

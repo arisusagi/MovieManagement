@@ -1,9 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Pipe({
   name: 'truncate'
 })
-
 export class TruncatePipe implements PipeTransform {
   transform(value: string, limit = 25, completeWords = false, ellipsis = '...') {
     if (completeWords) {

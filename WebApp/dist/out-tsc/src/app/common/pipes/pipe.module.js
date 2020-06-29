@@ -12,11 +12,13 @@ var PipeModule = /** @class */ (function () {
     PipeModule = __decorate([
         NgModule({
             declarations: [
-                TruncatePipe
+                TruncatePipe,
+                
             ],
             providers: [],
             exports: [
                 TruncatePipe,
+               
             ]
         })
     ], PipeModule);

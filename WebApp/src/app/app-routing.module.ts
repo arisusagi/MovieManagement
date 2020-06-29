@@ -2,6 +2,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { MainViewComponent } from "./views/main-view/main-view.component";
 import { NgModule } from "@angular/core";
 import { MovieManagementComponent } from "./views/movie-management/movie-management.component";
+import { AccountManagementComponent } from "./views/account-management/account-management.component";
 
 const appRoutes: Routes = [
     {
@@ -30,6 +31,10 @@ const appRoutes: Routes = [
     {
         path: 'admin',
         component: MovieManagementComponent,
+    },
+    {
+        path:'account',
+        component:AccountManagementComponent,
     }
 ];
 

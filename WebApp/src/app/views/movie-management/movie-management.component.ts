@@ -73,6 +73,7 @@ export class MovieManagementComponent implements OnInit {
     });
     this.modalRef.content.idDelete =this.listFilmOnline[i].id;
     console.log(this.modalRef.content.idDelete);
+    
   }
 
   onClickSearch(){

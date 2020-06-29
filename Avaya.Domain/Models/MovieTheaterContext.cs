@@ -15,6 +15,7 @@ namespace Avaya.Domain.Models
         {
         }
 
+        public virtual DbSet<Acc> Acc { get; set; }
         public virtual DbSet<Bill> Bill { get; set; }
         public virtual DbSet<BillDetail> BillDetail { get; set; }
         public virtual DbSet<Booking> Booking { get; set; }
@@ -39,13 +40,20 @@ namespace Avaya.Domain.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS;Database=MovieTheater;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("SERVER =den1.mssql7.gear.host; DATABASE = moviem; USER = moviem; PASSWORD =Td82cgcU47!_");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("ProductVersion", "2.2.0-rtm-35687");
+
+            modelBuilder.Entity<Acc>(entity =>
+            {
+                entity.Property(e => e.Password).HasMaxLength(50);
+
+                entity.Property(e => e.UserName).HasMaxLength(50);
+            });
 
             modelBuilder.Entity<Bill>(entity =>
             {

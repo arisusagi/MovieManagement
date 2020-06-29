@@ -27,7 +27,7 @@ export class FilmOnlineService {
   }
 
   getFilmDetail(filmId: number) {
-    return this.httpClient.get<FilmPosterDetailModel>(`${this.apiHost}/${this.homeAddress}/GetFilmDetail/${filmId}`);
+    return this.httpClient.get<FilmOnlineDetail>(`${this.apiHost}/${this.homeAddress}/GetFilmDetail/${filmId}`);
   }
 
   getListFilmDetails(filmId : any, numberOfFilms: any): Observable<any> {
@@ -51,4 +51,9 @@ export class FilmOnlineService {
   deleteFilmOnline(idDelete:number):Observable<any>{
     return this.httpClient.delete(`${this.apiHost}/${this.homeAddress}/DeleteFilmOnline/${idDelete}`)
   }
+
+  login(data: any): Observable<any> {
+    return this.httpClient.post(`${this.apiHost}/${this.homeAddress}/Login`, data)
+}
+
 }

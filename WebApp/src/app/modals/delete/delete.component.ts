@@ -20,8 +20,6 @@ export class DeleteComponent implements OnInit {
   ngOnInit() {
     setTimeout(() => {
       this.id = this.idDelete;
-      console.log(this.idDelete);
-      console.log(this.id);
     });
   }
   onClickCancel() {
@@ -36,6 +34,7 @@ export class DeleteComponent implements OnInit {
       alert(result);
       this.router.navigateByUrl("/admin");
       this.closeModal();
+      location.reload();
     })
   }
 }

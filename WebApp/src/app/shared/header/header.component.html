@@ -1,12 +1,12 @@
 <div class="header-container">
   <div>
     <button class="button" (click)="onClickPhimOnline()">Phim Online</button>
-    <button class="button" (click)="onClickOrder()">Đặt Vé</button>
-    <button class="button" (click)="onClickAdmin()">Admin</button>
+    <button *ngIf="checkType||checkStaff" class="button" (click)="onClickOrder()">Đặt Vé</button>
+    <button *ngIf="checkType" class="button" (click)="onClickAdmin()">Admin</button>
+    <button *ngIf="checkType" class="button" (click)="onClickAccount()">Account</button>
   </div>
   <img class="logo" src="http://localhost:59239/resources/images/logo.png">
   <div class="search-container">
-      <i class="fas fa-user log-in-circle log-in-button" title="Log In Pls" (click)="onClickLogin()"></i>
-    
+      <i class="fas fa-user log-in-circle log-in-button" (click)="onClickLogin()"></i>
   </div>
 </div>

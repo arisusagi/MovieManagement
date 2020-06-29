@@ -1,0 +1,41 @@
+<div>
+
+</div>
+<div>
+    <div class="overview-container">
+        <button class="button" (click)="onClickAdd()">Add</button>
+        <div class="search-container">
+            <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+              <input type="text" class="form-control bg-light border-0 small input-search" placeholder="Tìm kiếm..." [(ngModel)]="searchData" name="searchData">
+              <button class="btn btn-primary button-search" type="button" (click)="onClickSearch()" >
+                <i class="fas fa-search fa-sm"></i>
+              </button>
+              
+            </form>
+          </div>
+    </div>
+    <div class="table-container table table-striped">
+        <table>
+            <thead>
+                <tr class="row-head">
+                    <th>#</th>
+                    <th>User</th>
+                    <th>Password</th>
+                    <th>Type</th>
+                    <th> </th> 
+                    <th> </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="row-body" [class.row-odd]="i % 2 == 0" [class.row-even]="i % 2 == 1"  *ngFor="let item of listAccountCurrent; index as i">
+                    <td class="td-body">{{i+1}}</td>
+                    <td class="td-body">{{item.userName}}</td>
+                    <td class="td-body">{{item.password}}</td>
+                    <td class="td-body">{{item.type}}</td>
+                    <td class="td-body"><button class="button buttonblack" (click)="onClickEdit(i)">Edit</button></td>
+                    <td class="td-body"><button class="button buttonred" (click)="onClickDetele(i)">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

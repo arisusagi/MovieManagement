@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-film-online-recently-detail',
@@ -18,7 +19,8 @@ export class FilmOnlineRecentlyDetailComponent implements OnInit, OnChanges {
   iconText: string;
 
   starArray: any;;
-  constructor(private _domSanitizer: DomSanitizer) { }
+  constructor(private _domSanitizer: DomSanitizer,
+    private router:Router) { }
 
   ngOnInit() {
     this.showingStar();
@@ -48,4 +50,5 @@ export class FilmOnlineRecentlyDetailComponent implements OnInit, OnChanges {
   private showingStar() {
     this.starArray = ["fas fa-star", "fas fa-star", "fas fa-star-half-alt", "far fa-star", "far fa-star"];
   }
+
 }

@@ -25,6 +25,7 @@ export class CarouselFilmComponent implements OnInit {
   ngOnInit() {
     this.filmOnlineService.getListFilmsCarousel().subscribe(result => {
       this.listFilmOnlines = result;
+      console.log(this.listFilmOnlines);
     });
   }
 

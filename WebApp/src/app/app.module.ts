@@ -28,6 +28,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ServiceModule } from './core/services/service.module';
 import { AppCommonModule } from './common/app-common.module';
 import { MovieManagementComponent } from './views/movie-management/movie-management.component';
+import { AccountManagementComponent } from './views/account-management/account-management.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -35,7 +36,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 
 export const environment = {
   production: false,
-  appName: 'Lucifer'
+  appName: 'Movie Management'
 };
 
 @NgModule({
@@ -43,6 +44,7 @@ export const environment = {
     AppComponent,
     MainViewComponent,
     MovieManagementComponent,
+    AccountManagementComponent
   ],
   imports: [
     ModalsModule,

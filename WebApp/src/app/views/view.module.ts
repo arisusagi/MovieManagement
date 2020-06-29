@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MovieNewsViewModule } from './movie-news-view/movie-news-view.module';
 import { OfflineMovieSearchViewModule } from './offline-movie-search-view/offline-movie-search-view.module';
 import { PaymentViewModule } from './payment-view/payment-view.module';
 import { FilmOnlineViewModule } from './film-online-view/film-online-view.module';
@@ -13,31 +12,32 @@ import { ForgottenModalComponent } from '../modals/forgotten/forgotten.modal.com
 import { ModalsModule } from '../modals/modals.module';
 import { ViewRoutingModule } from './view-routing.module';
 import { MovieManagementComponent } from './movie-management/movie-management.component';
+import { AccountManagementComponent } from './account-management/account-management.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [AccountManagementComponent],
   imports: [
     ControlModule,
-    MovieNewsViewModule,
     OfflineMovieSearchViewModule,
     PaymentViewModule,
     FilmOnlineViewModule,
     FormsModule,
     ViewRoutingModule,
     CommonModule,
-    MovieManagementComponent
+    MovieManagementComponent,
+    AccountManagementComponent
   ],
   entryComponents: [
   ],
   exports: [
-    MovieNewsViewModule,
     OfflineMovieSearchViewModule,
     PaymentViewModule,
     FilmOnlineViewModule,
     ModalsModule,
     PaymentViewModule,
     FilmOnlineViewModule,
-    MovieManagementComponent
+    MovieManagementComponent,
+    AccountManagementComponent
   ]
 })
 export class ViewModule { }

@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { FilmOnlineService } from 'src/app/core/services/film-online.service';
 import { FilmPosterDetailModel } from 'src/app/core/model/film-model/film-poster-detail.model';
+import { FilmOnlineDetail } from 'src/app/core/model/film-model/film-online-detail.model';
 
 @Component({
   selector: 'app-film-online-poster-detail',
@@ -10,19 +11,20 @@ import { FilmPosterDetailModel } from 'src/app/core/model/film-model/film-poster
 })
 export class FilmOnlinePosterDetailComponent implements OnInit {
 
-  @Input() filmId: number;
+  @Input() filmId: any;
 
-  data: FilmPosterDetailModel;
+  data: FilmOnlineDetail = new FilmOnlineDetail();
 
   constructor(private _domSanitizer: DomSanitizer,
     private filmOnlineService: FilmOnlineService) { }
 
   ngOnInit() {
+    console.log(this.filmId);
     this.filmOnlineService.getFilmDetail(this.filmId).subscribe(result => {
       if (result) {
         this.data = result;
-        this.data.rates = [50, 33, 79];
       }
-    })
+    });
   }
+  
 }

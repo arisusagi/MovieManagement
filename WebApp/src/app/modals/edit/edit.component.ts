@@ -57,7 +57,7 @@ export class EditComponent implements OnInit {
     this.filmOnline.description = this.description;
     this.filmOnlineService.updateFilmOnline(this.filmOnline).subscribe(result => {
       alert(result);
-      this.router.navigateByUrl("/admin");
+      
       this.closeModal();
     })
   }

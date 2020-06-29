@@ -11,6 +11,7 @@ using Avaya.Core.Helper;
 using Avaya.Model.Seat;
 using Avaya.Model.Service;
 using Avaya.Model.Payment;
+using Avaya.Model.Account;
 
 namespace Avaya.Service
 {
@@ -51,8 +52,8 @@ namespace Avaya.Service
             CreateMap<FilmOnline, FilmNominationModel>()
                 .ForMember(x => x.Time, opt => opt.MapFrom(i => i.Duration)).ReverseMap();
             CreateMap<FilmOnline, FilmDetailModel>()
-                .ForMember(x => x.Time, opt => opt.MapFrom(i => $"{TransformHelper.TimeIntToString(i.Duration.Value)}"))
                 .ReverseMap();
+            CreateMap<Account, Avaya.Domain.Models.Acc>().ReverseMap();
             #endregion
 
             #region Film Offline Mapping

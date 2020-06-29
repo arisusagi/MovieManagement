@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http.Cors;
 using Avaya.Domain.Models;
+using Avaya.Model.Account;
+using Avaya.Service.AccountService;
 using Avaya.Service.Film;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,10 +16,12 @@ namespace Avaya.API.Controllers
     public class FilmController : Controller
     {
         private readonly IFilmService _filmService;
+        private readonly IAccountService _accountService;
 
-        public FilmController(IFilmService filmService)
+        public FilmController(IFilmService filmService, IAccountService accountService)
         {
             _filmService = filmService;
+            _accountService = accountService;
         }
 
         [HttpGet]
@@ -81,6 +85,13 @@ namespace Avaya.API.Controllers
         {
             var filmOnline = _filmService.DeleteFilmOnline(idDelete);
             return Ok(filmOnline);
+        }
+
+        [HttpPost]
+        public IActionResult Login([FromBody] Account data)
+        {
+            var checkLogin = _accountService.Login(data);
+            return Ok(checkLogin);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Avaya.Domain
         public static void ConfigureDomain(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<MovieTheaterContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("MovieTheater")));
+                options.UseSqlServer("SERVER=den1.mssql7.gear.host; DATABASE=moviem; USER=moviem; PASSWORD=Td82cgcU47!_"));
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IRepository<BookingDetail>, Repository<BookingDetail>>();
@@ -44,6 +44,7 @@ namespace Avaya.Domain
             services.AddScoped<IRepository<Product>, Repository<Product>>();
             services.AddScoped<IRepository<ProductCinema>, Repository<ProductCinema>>();
             services.AddScoped<IRepository<RoomShowTime>, Repository<RoomShowTime>>();
+            services.AddScoped<IRepository<Acc>, Repository<Acc>>();
         }
     }
 }
